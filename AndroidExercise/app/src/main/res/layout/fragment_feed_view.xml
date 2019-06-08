@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.view.View"/>
+        <variable
+                name="feedsListVM"
+                type="com.wipro.androidexercise.ui.feeds.FeedListViewModel"/>
+    </data>
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <TextView
+                android:id="@+id/textViewError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/error_data_msg"
+                android:layout_marginStart="@dimen/uniform_margin"
+                android:layout_marginTop="@dimen/uniform_margin"
+                android:layout_marginEnd="@dimen/uniform_margin"
+                android:layout_marginBottom="@dimen/uniform_margin"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/pullToRefresh"/>
+
+        <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/textViewLoading"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/pullToRefresh"/>
+
+        <TextView
+                android:id="@+id/textViewLoading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/loading_data_msg"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/pullToRefresh"/>
+
+        <android.support.v4.widget.SwipeRefreshLayout
+                android:id="@+id/pullToRefresh"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/uniform_margin"
+                android:layout_marginTop="@dimen/uniform_margin"
+                android:layout_marginEnd="@dimen/uniform_margin"
+                android:layout_marginBottom="@dimen/uniform_margin"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerViewFeedList"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/uniform_margin"
+                    android:layout_marginTop="@dimen/uniform_margin"
+                    android:layout_marginEnd="@dimen/uniform_margin"
+                    android:layout_marginBottom="@dimen/uniform_margin"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:feedsList="@{feedsListVM.feedsList}"
+                    app:layout_constraintTop_toTopOf="parent">
+            </android.support.v7.widget.RecyclerView>
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

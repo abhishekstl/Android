@@ -1,0 +1,10 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="uniform_margin">8dp</dimen>
+    <dimen name="progress_bar_width">45dp</dimen>
+    <dimen name="card_viewmargin">1dp</dimen>
+    <dimen name="card_view_corner_radius">2dp</dimen>
+    <dimen name="img_view_height">68dp</dimen>
+    <dimen name="clayout_padding">2dp</dimen>
+    <dimen name="layout_init_width">0dp</dimen>
+</resources>
