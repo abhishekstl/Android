@@ -1,7 +1,0 @@
-<resources>
-    <string name="app_name">AndroidExercise</string>
-    <string name="title_activity_feed_list">FeedList</string>
-    <string name="error_data_msg">Error loading data from the Http API\n\t\t\t\t\tSwipe down to refresh</string>
-    <string name="loading_data_msg">Loading contents please wait</string>
-    <string name="fragment_view_feed">FeedViewFragment</string>
-</resources>
