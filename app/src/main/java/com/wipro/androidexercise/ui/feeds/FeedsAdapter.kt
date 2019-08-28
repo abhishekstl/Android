@@ -1,6 +1,5 @@
 package com.wipro.androidexercise.ui.feeds
 
-import android.content.Context
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
@@ -11,12 +10,13 @@ import com.wipro.androidexercise.BR
 import com.wipro.androidexercise.R
 import com.wipro.androidexercise.modelbuilder.model.FeedListRow
 import com.wipro.androidexercise.viewmodel.feeds.FeedViewModel
+import android.content.Context as Context1
 
 
-class FeedsAdapter(private val vContext: Context, feedsList: MutableList<FeedListRow>?) : RecyclerView.Adapter<FeedsAdapter.FeedsBindingViewHolder>() {
+class FeedsAdapter(vContext: Context1, feedsList: MutableList<FeedListRow>?) : RecyclerView.Adapter<FeedsAdapter.FeedsBindingViewHolder>() {
 
     private var mFeedsList : MutableList<FeedListRow>? = mutableListOf()
-    private var mContext: Context;
+    private var mContext: Context1
 
     init {
         mFeedsList = feedsList

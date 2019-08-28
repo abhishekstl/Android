@@ -12,7 +12,7 @@ import com.wipro.androidexercise.ui.feeds.FeedsListActivity
 class SplashActivity : AppCompatActivity() {
 
 
-    private val SPLASHTIMEOUT : Long = 3000
+    private val splashTimeout : Long = 3000
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +22,7 @@ class SplashActivity : AppCompatActivity() {
             val i = Intent(this@SplashActivity, FeedsListActivity::class.java)
             startActivity(i)
             finish()
-        }, SPLASHTIMEOUT)
+        }, splashTimeout)
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {
@@ -38,7 +38,6 @@ class SplashActivity : AppCompatActivity() {
                 or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                // Hide the nav bar and status bar
                 or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                 or View.SYSTEM_UI_FLAG_FULLSCREEN)
     }

@@ -10,7 +10,7 @@ import dagger.Provides
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import com.wipro.androidex.modelbuilder.services.ServiceUrls.BASE_URL
+import com.wipro.androidexercise.modelbuilder.services.ServiceUrls.BASE_URL
 import com.wipro.androidexercise.BaseApplication
 import com.wipro.androidexercise.modelbuilder.services.FeedAPIInterface
 import com.wipro.androidexercise.modelbuilder.dataaccess.FeedRepository
@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit
 @Module(includes = [ViewModelModule::class])
 object AppModule {
 
-    const val HTTP_RESPONSE_CACHE = (10 * 1024 * 1024).toLong()
+    private const val HTTP_RESPONSE_CACHE = (10 * 1024 * 1024).toLong()
 
     @Singleton
     @Provides
@@ -57,7 +57,7 @@ object AppModule {
     @Provides
     @JvmStatic
     fun getCache(): Cache {
-        return Cache(BaseApplication.getAppInstance().cacheDir, HTTP_RESPONSE_CACHE)
+        return Cache(BaseApplication.getAppInstance().cacheDir, this.HTTP_RESPONSE_CACHE)
     }
 
     @Singleton
@@ -71,7 +71,7 @@ object AppModule {
     @Provides
     @JvmStatic
     fun provideRepositoryInstance(apiInterface: FeedAPIInterface): FeedRepository {
-        return FeedRepository(apiInterface);
+        return FeedRepository(apiInterface)
     }
 
 
@@ -81,12 +81,12 @@ object AppModule {
                .activeNetworkInfo
     }
 
-    fun getCacheInterceptor(): Interceptor {
+    private fun getCacheInterceptor(): Interceptor {
 
         return Interceptor { chain ->
             var request = chain.request()
 
-            var networkInfo =  getNetworkInfo()
+            val networkInfo =  getNetworkInfo()
 
             request = if (networkInfo != null && networkInfo.isConnected) {
 
@@ -102,7 +102,7 @@ object AppModule {
 
                 request.newBuilder()
                     .cacheControl(cc)
-                    .build();
+                    .build()
 
             }
             else {
@@ -120,7 +120,7 @@ object AppModule {
 
                 request.newBuilder()
                     .cacheControl(cacheControl)
-                    .build();
+                    .build()
             }
             // Add the modified request to the chain.
             chain.proceed(request)

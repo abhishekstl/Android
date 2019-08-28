@@ -25,7 +25,7 @@ class FeedListViewModel @Inject constructor(
         getFeeds()
     }
 
-    fun getFeeds(){
+    private fun getFeeds(){
          mfeedRepository.getFeeds(object : FeedResponse {
             override fun onSuccess(feedListData: FeedListData?) {
                 feedsList.value =feedListData?.rows
@@ -37,7 +37,7 @@ class FeedListViewModel @Inject constructor(
                 showLoading.value = false
                 showError.value = true
             }
-        });
+        })
     }
 
      fun refresh() {

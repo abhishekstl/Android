@@ -21,18 +21,19 @@ class FeedRepository @Inject constructor(
         feedsCall.enqueue(object : Callback<FeedListData> {
             override fun onResponse(call: Call<FeedListData>, response: Response<FeedListData>) {
 
-                if(response.raw().networkResponse() == null) {
+                if (response.raw().networkResponse() != null) {
+                } else {
                     if(!response.isSuccessful){
                         fResponse.onFailure()
                         return
                     }
-                   // Log.d(LOG_TAG, "Cached Response is returned")
+                    // Log.d(LOG_TAG, "Cached Response is returned")
                 }
                 //else {
                   //  Log.d(LOG_TAG, "Network Response is returned")
                 //}
 
-                fResponse.onSuccess(response.body())
+                fResponse.run { onSuccess(response.body()) }
             }
 
             override fun onFailure(call: Call<FeedListData>, t: Throwable) {

@@ -18,9 +18,9 @@ class FeedsListActivity : AppCompatActivity(), HasSupportFragmentInjector {
 
     override fun supportFragmentInjector() = dispatchingAndroidInjector
 
-    var feedViewFragment : FeedViewFragment? = null
+    private lateinit var feedViewFragment : FeedViewFragment
 
-    var mBinding: ActivityFeedsListBinding? = null
+    private var mBinding: ActivityFeedsListBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,10 +33,9 @@ class FeedsListActivity : AppCompatActivity(), HasSupportFragmentInjector {
         if(savedInstanceState == null){
             feedViewFragment = FeedViewFragment()
             val transaction = supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.main_container, feedViewFragment!!, getString(R.string.fragment_view_feed))
+            transaction.replace(R.id.main_container, feedViewFragment, getString(R.string.fragment_view_feed))
             transaction.commit()
         }
-
     }
 
 }

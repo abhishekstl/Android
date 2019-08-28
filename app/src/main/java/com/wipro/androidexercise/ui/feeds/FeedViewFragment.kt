@@ -21,9 +21,9 @@ import javax.inject.Inject
 class FeedViewFragment : Fragment(), Injectable, SwipeRefreshLayout.OnRefreshListener {
 
 
-    lateinit var mBinding: FragmentFeedViewBinding
+    private lateinit var mBinding: FragmentFeedViewBinding
 
-    lateinit var flVM: FeedListViewModel
+    private lateinit var flVM: FeedListViewModel
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -36,7 +36,7 @@ class FeedViewFragment : Fragment(), Injectable, SwipeRefreshLayout.OnRefreshLis
 
         mBinding = FragmentFeedViewBinding.inflate(inflater)
         mBinding.pullToRefresh.setOnRefreshListener(this)
-        return mBinding.getRoot()
+        return mBinding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -44,10 +44,10 @@ class FeedViewFragment : Fragment(), Injectable, SwipeRefreshLayout.OnRefreshLis
 
         flVM = ViewModelProviders.of(this, viewModelFactory).get(FeedListViewModel::class.java)
 
-        subscribeFeedsData();
-        subscribeTitle();
-        subscribeLoading();
-        subscribeError();
+        subscribeFeedsData()
+        subscribeTitle()
+        subscribeLoading()
+        subscribeError()
     }
 
 
@@ -56,11 +56,11 @@ class FeedViewFragment : Fragment(), Injectable, SwipeRefreshLayout.OnRefreshLis
             if (it!!) {
                 mBinding.recyclerViewFeedList.visibility = View.GONE
                 mBinding.textViewError.visibility = View.VISIBLE
-                setAdapterIfNull(mutableListOf<FeedListRow>())
+                setAdapterIfNull(mutableListOf())
             } else {
                 mBinding.textViewError.visibility = View.GONE
             }
-            mBinding.pullToRefresh.setRefreshing(false)
+            mBinding.pullToRefresh.isRefreshing = false
         })
     }
 
@@ -94,7 +94,7 @@ class FeedViewFragment : Fragment(), Injectable, SwipeRefreshLayout.OnRefreshLis
             val isAdapterNull = setAdapterIfNull(it?.toMutableList())
 
             if (!isAdapterNull) {
-                (mBinding.recyclerViewFeedList.getAdapter() as FeedsAdapter?)?.refreshList(it)
+                (mBinding.recyclerViewFeedList.adapter as FeedsAdapter?)?.refreshList(it)
             }
 
             mBinding.pullToRefresh.isRefreshing = false

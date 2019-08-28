@@ -15,7 +15,7 @@ class BaseApplication : Application(), HasActivityInjector   {
     override fun onCreate() {
         super.onCreate()
         AppInjector.init(this)
-        appInstance = this;
+        appInstance = this
     }
 
     override fun activityInjector() = dispatchingAndroidInjector
